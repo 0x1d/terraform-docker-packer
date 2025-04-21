@@ -11,7 +11,7 @@ source "arm" "raspios-arm64" {
   file_unarchive_cmd        = ["xz", "--decompress", "$ARCHIVE_PATH"]
   image_build_method        = "resize"
   image_path                = "raspios-arm64.img"
-  image_size                = "6G"
+  image_size                = "4G"
   image_type                = "dos"
 
   image_partitions {
@@ -39,6 +39,17 @@ source "arm" "raspios-arm64" {
 
 build {
   sources = ["source.arm.raspios-arm64"]
+
+  provisioner "file" {
+    source = "rootfs/lib/systemd/system/firstboot.service"
+    destination = "/lib/systemd/system/firstboot.service"
+  }
+
+  provisioner "file" {
+    source = "rootfs/lib/firstboot.sh"
+    destination = "/lib/firstboot.sh"
+  }
+
   provisioner "shell" {
     scripts = [
       "scripts/pi.sh",
