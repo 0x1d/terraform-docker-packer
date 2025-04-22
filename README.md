@@ -1,6 +1,12 @@
 # Terraform Docker Packer
 
-This Terraform module serves as an abstraction to builds machine images from Packer configurations through Docker.
+This Terraform module serves as an abstraction to builds machine images from Packer configurations through Docker.  
+A pre-existing Docker image with Packer installed is required.  
+The build runs in the background and outpout the image to the local directory.  
+To see the build progress, you need to show the Docker logs like this:
+```
+docker logs -f $(docker ps -q -f name=packer-builder-arm)
+```
 
 ## Requirements
 
