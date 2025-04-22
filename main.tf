@@ -1,12 +1,15 @@
 locals {
   packer_variables_file = "variables.pkrvars.hcl"
+  packer_variables = <<-EOT
+%{ for key, value in var.packer_variables ~}
+${key} = ${try(jsonencode(value), "\"${value}\"")}
+%{ endfor ~}
+EOT
 }
 
 resource "local_file" "packer_variables" {
   filename = local.packer_variables_file
-  content = <<-EOT
-    scripts = ${jsonencode(var.provisioning_scripts)}
-  EOT
+  content  = local.packer_variables
 }
 
 resource "docker_image" "packer" {

@@ -1,4 +1,40 @@
-# PI Bakery
+# Terraform Docker Packer
 
-## Firstboot
-Adopted from https://github.com/nmcclain/raspberian-firstboot
+This Terraform module serves as an abstraction to builds machine images from Packer configurations through Docker.
+
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_docker"></a> [docker](#requirement\_docker) | ~> 3.0.1 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_docker"></a> [docker](#provider\_docker) | 3.0.2 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.5.2 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [docker_container.packer](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/container) | resource |
+| [docker_image.packer](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/image) | resource |
+| [local_file.packer_variables](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_packer_config"></a> [packer\_config](#input\_packer\_config) | n/a | `string` | n/a | yes |
+| <a name="input_packer_image"></a> [packer\_image](#input\_packer\_image) | n/a | `string` | `"mkaczanowski/packer-builder-arm:latest"` | no |
+| <a name="input_packer_variables"></a> [packer\_variables](#input\_packer\_variables) | n/a | `any` | n/a | yes |
+
+## Outputs
+
+No outputs.

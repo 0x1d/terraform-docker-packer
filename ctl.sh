@@ -6,8 +6,11 @@ function info {
 
 function build {
   function image {
-    terraform apply
-    docker logs -f $(docker ps -q -f name=packer-builder-arm)
+    pushd examples/raspios
+      terraform init
+      terraform apply
+      docker logs -f $(docker ps -q -f name=packer-builder-arm)
+    popd
   }
   ${@:-info}
 }

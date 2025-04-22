@@ -7,7 +7,6 @@ variable "packer_config" {
   type = string
 }
 
-variable "provisioning_scripts" {
-  type = list(string)
-  default = []
+variable "packer_variables" {
+  
 }
