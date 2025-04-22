@@ -15,6 +15,13 @@ terraform apply
 docker logs -f $(docker ps -q -f name=packer-builder-arm)
 ```
 
+The image will have ssh enabled and user `pi` configured with password `raspberry`.  
+To change password for the user, modify `./scripts/pi.sh`.
+Generate another password with:
+```
+openssl passwd -6
+```
+
 ## Firstboot
 
 This example contains a Systemd service and script that will run at first boot and sets the hostname to `rpi-SERIAL` so that each device gets a unique hostname.    
