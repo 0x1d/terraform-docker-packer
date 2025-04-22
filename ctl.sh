@@ -6,12 +6,8 @@ function info {
 
 function build {
   function image {
-    local image_config=${1:-$(ls  packer | fzf)}
-    [[ -z "$image_config" ]] && die "Config not found"
-    docker run --rm --privileged \
-      -v /dev:/dev \
-      -v ${PWD}:/build mkaczanowski/packer-builder-arm:latest \
-      build packer/${image_config}
+    terraform apply
+    docker logs -f $(docker ps -q -f name=packer-builder-arm)
   }
   ${@:-info}
 }
