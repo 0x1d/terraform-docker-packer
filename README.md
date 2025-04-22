@@ -2,6 +2,18 @@
 
 This Terraform module serves as an abstraction to builds machine images from Packer configurations through Docker.  
 A pre-existing Docker image with Packer installed is required.  
+  
+You may run the example to build a RaspiOS ARM64 image:
+```
+pushd examples/raspios
+    terraform init
+    terraform apply
+    docker logs -f $(docker ps -q -f name=packer-builder-arm)
+popd
+```
+
+## Build Progress
+
 The build runs in the background and outpout the image to the local directory.  
 To see the build progress, you need to show the Docker logs like this:
 ```
